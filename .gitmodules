@@ -1,3 +1,6 @@
 [submodule "modules/use-package"]
 	path = modules/use-package
 	url = https://github.com/jwiegley/use-package
+[submodule "helpful"]
+	path = helpful
+	url = https://github.com/Wilfred/helpful
