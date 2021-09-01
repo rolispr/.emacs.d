@@ -4,3 +4,42 @@
 [submodule "helpful"]
 	path = helpful
 	url = https://github.com/Wilfred/helpful
+[submodule "modules/helpful"]
+	path = modules/helpful
+	url = https://github.com/Wilfred/helpful
+[submodule "modules/doom-themes"]
+	path = modules/doom-themes
+	url = https://github.com/hlissner/emacs-doom-themes
+[submodule "modules/general"]
+	path = modules/general
+	url = https://github.com/noctuid/general.el
+[submodule "modules/evil"]
+	path = modules/evil
+	url = https://github.com/emacs-evil/evil
+[submodule "modules/elisp-refs"]
+	path = modules/elisp-refs
+	url = https://github.com/Wilfred/elisp-refs
+[submodule "modules/dash"]
+	path = modules/dash
+	url = https://github.com/magnars/dash.el
+[submodule "modules/s"]
+	path = modules/s
+	url = https://github.com/magnars/s.el
+[submodule "modules/f"]
+	path = modules/f
+	url = https://github.com/rejeep/f.el
+[submodule "modules/magit"]
+	path = modules/magit
+	url = https://github.com/magit/magit
+[submodule "modules/with-editor"]
+	path = modules/with-editor
+	url = https://github.com/magit/with-editor
+[submodule "modules/transient"]
+	path = modules/transient
+	url = https://github.com/magit/transient
+[submodule "modules/lsp-ui"]
+	path = modules/lsp-ui
+	url = https://github.com/emacs-lsp/lsp-ui
+[submodule "modules/lsp-mode"]
+	path = modules/lsp-mode
+	url = https://github.com/emacs-lsp/lsp-mode

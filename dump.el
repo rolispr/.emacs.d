@@ -1,14 +1,33 @@
 (require 'package)
+
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
 
-(setq community-packages-directory (concat user-emacs-directory "community-packages"))
-(let ((cpkg-path (directory-files community-packages-directory
-                                  t directory-files-no-dot-files-regexp)))
-  (mapc (apply-partially 'add-to-list 'load-path) cpkg-path))
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-(setq dumped-load-path load-path)
+(setq dumped-load-path load-path
+      dumpedp t)
 
-(dolist (package '(use-package))
-  (require package))
+(dolist (package '(use-package
+		   ;;exec-path-from-shell
+		   general
+		   evil
+		   evil-terminal-cursor-changer
+		   dired-subtree
+		   dired-git-info
+		   wgrep
+		   ;;lsp-mode
+		   ;;lsp-ui
+		   ))
+  (progn
+    (package-refresh-contents)
+    (package-install package)
+    (require package)));needed? 
+
+(load-theme 'modus-vivendi)
 
 (dump-emacs-portable "~/.emacs.d/emacs.pdmp")
+
