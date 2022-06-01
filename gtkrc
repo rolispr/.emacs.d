@@ -1,0 +1,9 @@
+style "scroll"
+{
+  fg[NORMAL] = "red"     # Arrow color.
+  bg[NORMAL] = "yellow"  # Thumb and background around arrow.
+  bg[ACTIVE] = "blue"    # Trough color.
+  bg[PRELIGHT] = "white" # Thumb color when the mouse is over it.
+}
+
+widget "*verticalScrollBar*" style "scroll"
