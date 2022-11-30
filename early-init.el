@@ -8,7 +8,7 @@
 	  ;; restore the disabled checking against file handler alist
 	  ;; and set a smaller gc threshold to gc more but have shorter gc's as well
 	  (let ((restore-list file-name-handler-alist)
-		(threshold 8388608)) ; 8mb
+		(threshold (* 16 1024 1024)))
 	    (lambda ()
 	      (message "startup in %s with %d gc's."
 		       (format "%.2f seconds"
