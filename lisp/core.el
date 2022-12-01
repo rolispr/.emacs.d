@@ -1,7 +1,7 @@
 ;;-*- lexical-binding: t -*-
 
-;; check dumper?
-;; load...package? ie modules
+;; check for dumped image?
+;; load...package?
 ;; or install pkgs? 
 ;; some custom vars for basic editing here?
 
@@ -39,7 +39,15 @@
 (when (eq system-type 'gnu/linux)
   (require 'linux))
 
+(require 'package)
+(package-initialize)
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+			 ("melpa" . "https://melpa.org/packages/")))
 (require 'ui)
 (require 'misc)
 (require 'completions)
-(require 'user-packages)
+
+;; Eventually split user-packages to this...
+;;(require 'editing)
+;;(require 'project)
+;;(require 'workspaces)

@@ -1,5 +1,9 @@
 ;;-*- lexical-binding: t -*-
 
+(require 'doom-themes)
+(require 'magit)
+(require 'which-key)
+
 ;;; Theme
 ; For current frame
 ;;(set-frame-parameter (selected-frame) 'alpha '(100 100))
@@ -11,7 +15,7 @@
 (setq blink-cursor-blinks -1)
 
 ;;; Fonts
-(add-to-list 'default-frame-alist '(font . "Fira Code 16"))
+(add-to-list 'default-frame-alist '(font . "Fira Code 14"))
 ;;(set-face-attribute 'default nil :font "Terminus-18" )
 ;;;; Startup display
 (fset #'display-startup-echo-area-message #'ignore)
@@ -21,6 +25,7 @@
 "
       ;;      inhibit-startup-echo-area-message user-login-name
       inhibit-default-init t)
+
 ;; Disable bidi
 (setq-default bidi-display-reordering 'left-to-right
  	      bidi-paragraph-direction 'nil)
@@ -37,16 +42,24 @@
 (setq split-height-threshold nil)
 (setq split-width-threshold 0)
 
-(setq tab-bar-show t)
-(tab-bar-mode t)
-;;(setq visible-bell nil)
-(setq ring-bell-function 'ignore) ;; disable all alerts
-;;(tab-bar-history-mode 1) doesnt work
-(winner-mode 1)
-(show-paren-mode 1)
+;; disable all alerts
+(setq ring-bell-function 'ignore) 
 
+(setq tab-bar-show t)
+;;(tab-bar-history-mode 1) doesnt work
 ;;(setq tab-bar-format '(tab-bar-format-global))
 ;;(setq display-time-day-and-date t)
 ;;(setq display-time-default-load-average nil)
+
+(global-set-key (kbd "C-x g") 'magit-status)
+
+(setq which-key-sort-order 'which-key-order-aplha
+      which-key-idle-delay 2)
+
+(load-theme 'doom-moonlight)
+(tab-bar-mode t)
+(winner-mode 1)
+(show-paren-mode 1)
+(which-key-mode)
 
 (provide 'ui)
