@@ -53,7 +53,7 @@
 
 (global-set-key (kbd "C-x g") 'magit-status)
 
-(setq which-key-sort-order 'which-key-order-aplha
+(setq which-key-sort-order 'which-key-key-order-alpha
       which-key-idle-delay 2)
 
 (load-theme 'doom-moonlight)
