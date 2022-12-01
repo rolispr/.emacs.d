@@ -57,8 +57,8 @@
 (setq wgrep-auto-save-buffer t)
 (setq wgrep-change-readonly-file t)
 
-(add-hook 'dired-mode #'dired-hide-details-mode)
-(add-hook 'dired-mode #'hl-line-mode)
+(add-hook 'dired-mode-hook #'dired-hide-details-mode)
+(add-hook 'dired-mode-hook #'hl-line-mode)
 
 (savehist-mode)
 

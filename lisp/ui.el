@@ -8,8 +8,8 @@
 ; For current frame
 ;;(set-frame-parameter (selected-frame) 'alpha '(100 100))
 ;;(add-to-list 'default-frame-alist '(alpha 85 85))
-(set-frame-parameter nil 'alpha-background 90)
-(add-to-list 'default-frame-alist '(alpha-background . 90)) ; For all new frames henceforth
+(set-frame-parameter nil 'alpha-background 95)
+(add-to-list 'default-frame-alist '(alpha-background . 95)) ; For all new frames henceforth
 (set-frame-parameter nil 'internal-border-width 1)
 (setq-default cursor-type 'bar)
 (setq blink-cursor-blinks -1)

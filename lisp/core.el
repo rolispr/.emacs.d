@@ -46,8 +46,6 @@
 (require 'ui)
 (require 'misc)
 (require 'completions)
-
-;; Eventually split user-packages to this...
 ;;(require 'editing)
 ;;(require 'project)
 ;;(require 'workspaces)
