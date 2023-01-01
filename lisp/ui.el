@@ -15,7 +15,7 @@
 (setq blink-cursor-blinks -1)
 
 ;;; Fonts
-(add-to-list 'default-frame-alist '(font . "Fira Code 14"))
+(add-to-list 'default-frame-alist '(font . "FiraCode Nerd Font 10"))
 ;;(set-face-attribute 'default nil :font "Terminus-18" )
 ;;;; Startup display
 (fset #'display-startup-echo-area-message #'ignore)
