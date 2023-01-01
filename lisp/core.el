@@ -31,18 +31,17 @@
 (setq custom-file (expand-file-name "custom.el" _core-dir))
 (load-file custom-file)
 
-;; MacOS specific
-(when (eq system-type 'darwin)
-  (require 'macos))
-
-;; Linux specific
-(when (eq system-type 'gnu/linux)
-  (require 'linux))
-
 (require 'package)
 (package-initialize)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
 			 ("melpa" . "https://melpa.org/packages/")))
+
+;; MacOS specific
+(when (eq system-type 'darwin)
+  (require 'macos))
+;; Linux specific
+(when (eq system-type 'gnu/linux)
+  (require 'linux))
 (require 'ui)
 (require 'misc)
 (require 'completions)

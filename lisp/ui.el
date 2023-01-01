@@ -1,8 +1,8 @@
 ;;-*- lexical-binding: t -*-
 
 (require 'doom-themes)
-(require 'magit)
-(require 'which-key)
+(run-with-idle-timer 2 nil (lambda () (require 'magit)))
+(run-with-idle-timer 2 nil (lambda () (require 'which-key)))
 
 ;;; Theme
 ; For current frame
@@ -14,9 +14,6 @@
 (setq-default cursor-type 'bar)
 (setq blink-cursor-blinks -1)
 
-;;; Fonts
-(add-to-list 'default-frame-alist '(font . "FiraCode Nerd Font 10"))
-;;(set-face-attribute 'default nil :font "Terminus-18" )
 ;;;; Startup display
 (fset #'display-startup-echo-area-message #'ignore)
 (fset 'yes-or-no-p 'y-or-n-p)
