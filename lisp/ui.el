@@ -1,8 +1,8 @@
 ;;-*- lexical-binding: t -*-
 
 (require 'doom-themes)
-(run-with-idle-timer 2 nil (lambda () (require 'magit)))
-(run-with-idle-timer 2 nil (lambda () (require 'which-key)))
+(autoload #'magit-status "magit" nil t)
+(run-with-idle-timer 2 nil #'require 'which-key nil t)
 
 ;;; Theme
 ; For current frame

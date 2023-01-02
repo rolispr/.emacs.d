@@ -1,10 +1,5 @@
 ;;-*- lexical-binding: t -*-
 
-;; check for dumped image?
-;; load...package?
-;; or install pkgs? 
-;; some custom vars for basic editing here?
-
 ;;;;;;;;;;
 ;;
 ;; Ensure we're at least emacs 26.1. *Should* be set for 29 but...

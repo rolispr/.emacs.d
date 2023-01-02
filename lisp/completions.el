@@ -54,6 +54,7 @@
 (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
 
 (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+
 (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup)
 (add-hook 'eshell-mode-hook #'corfu-mode)
