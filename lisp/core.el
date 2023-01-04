@@ -55,3 +55,16 @@
   (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
   (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
   (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
+
+(global-set-key (kbd "M-o") 'other-window)
+;; live and die by BASH
+(global-set-key (kbd "C-w") 'backward-kill-word)
+(global-set-key (kbd "C-x C-k") 'kill-region)
+
+(global-set-key (kbd "C-x C-m") 'execute-extended-command)
+(setq password-cache-expiry (* 60 15))
+(setq use-dialog-box nil)
+(setq switch-to-buffer-obey-display-actions t)
+
+
+
