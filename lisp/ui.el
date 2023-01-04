@@ -43,6 +43,8 @@
 (setq ring-bell-function 'ignore) 
 
 (setq tab-bar-show t)
+(setq tab-bar-close-button-show nil
+      tab-bar-new-button-show nil)
 ;;(tab-bar-history-mode 1) doesnt work
 ;;(setq tab-bar-format '(tab-bar-format-global))
 ;;(setq display-time-day-and-date t)
