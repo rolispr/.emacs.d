@@ -69,7 +69,7 @@
           ("K" edwina-swap-previous-window)
           ("h" edwina-dec-mfact)  
           ("l" edwina-inc-mfact)    
-          ("D" edina-dec-nmaster)  
+          ("D" edwina-dec-nmaster)  
           ("I" edwina-inc-nmaster)  
           ("C" edwina-delete-window) 
           ("RET" edwina-zoom t)     
