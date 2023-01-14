@@ -8,18 +8,18 @@
 ; For current frame
 ;;(set-frame-parameter (selected-frame) 'alpha '(100 100))
 ;;(add-to-list 'default-frame-alist '(alpha 85 85))
-(set-frame-parameter nil 'alpha-background 95)
-(add-to-list 'default-frame-alist '(alpha-background . 95)) ; For all new frames henceforth
+(set-frame-parameter nil 'alpha-background 85)
+(add-to-list 'default-frame-alist '(alpha-background . 85)) ; For all new frames henceforth
 (set-frame-parameter nil 'internal-border-width 1)
-(setq-default cursor-type 'bar)
-(setq blink-cursor-blinks -1)
+(setq cursor-type 'bar)
+(setq blink-cursor-mode nil)
+;;(setq blink-cursor-blinks -1)
 
 ;;;; Startup display
 (fset #'display-startup-echo-area-message #'ignore)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq inhibit-startup-message t
-      initial-scratch-message ";;hello!
-"
+      initial-scratch-message ";;hello!"
       ;;      inhibit-startup-echo-area-message user-login-name
       inhibit-default-init t)
 
@@ -33,8 +33,28 @@
 
 ;;; Initial frame position
 (when window-system
-  (set-frame-position (selected-frame) 0 0)
-  (set-frame-size (selected-frame) 95 50))
+  (let ((home-monitor "C32HG7x")
+	(current (cdr (assoc 'name (car (display-monitor-attributes-list))))))
+    (when (string= home-monitor current)
+      (message "Welcome home!")
+      (set-frame-position (selected-frame) 0 0) ;; only on x11
+      (set-frame-size (selected-frame) 255 75))))
+
+;;(set-frame-position (selected-frame) 0 0)
+(set-frame-size (selected-frame) 200 70)
+
+(defun my/set-gnome-bg ()
+  (interactive)
+   (let ((files '("*.png" "*.jpg"))
+	 (result))
+     (dolist (elt files result)
+       (setq result (cons (mapcar #'file-truename (file-expand-wildcards (concat "~/Downloads/" elt))) result)))
+     (set-gnome-bg (completing-read "Choose one: " (flatten-list result)))))
+
+(defun set-gnome-bg (path)
+  "Set background for Gnome given a PATH string"
+  (shell-command
+   (format "gsettings set org.gnome.desktop.background picture-uri file:///%s" path)))
 
 (setq split-height-threshold nil)
 (setq split-width-threshold 0)
@@ -45,7 +65,9 @@
 (setq tab-bar-show t)
 (setq tab-bar-close-button-show nil
       tab-bar-new-button-show nil)
-;;(tab-bar-history-mode 1) doesnt work
+(tab-bar-history-mode 1)
+(setq tab-bar-forward-button nil
+      tab-bar-back-button nil)
 ;;(setq tab-bar-format '(tab-bar-format-global))
 ;;(setq display-time-day-and-date t)
 ;;(setq display-time-default-load-average nil)
@@ -61,21 +83,6 @@
 
   (setq display-buffer-base-action '(display-buffer-below-selected))
 
-  (setq edwina-dwm-key-alist
-        '(("r" edwina-arrange)
-          ("j" edwina-select-next-window)
-          ("k" edwina-select-previous-window)
-	  ("J" edwina-swap-next-window)
-          ("K" edwina-swap-previous-window)
-          ("h" edwina-dec-mfact)  
-          ("l" edwina-inc-mfact)    
-          ("D" edwina-dec-nmaster)  
-          ("I" edwina-inc-nmaster)  
-          ("C" edwina-delete-window) 
-          ("RET" edwina-zoom t)     
-          ("return" edwina-zoom t)
-          ("S-RET" edwina-clone-window t) 
-          ("S-return" edwina-clone-window t)))
   (edwina-setup-dwm-keys)
   (edwina-mode 1))
 

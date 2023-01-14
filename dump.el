@@ -1,5 +1,5 @@
-(when (member "NATIVE_COMP" (split-string system-configuration-features " "))
-  (error "only run this w/o native compilation enabled"))
+;(when (member "NATIVE_COMP" (split-string system-configuration-features " "))
+;  (error "only run this w/o native compilation enabled"))
   
 (message "collecting packages...")
 

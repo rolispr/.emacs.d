@@ -4,7 +4,7 @@
   :defer 0.1
   :config
   ;; Different scroll margin
-  ;; (setq vertico-scroll-margin 0)
+  (setq vertico-scroll-margin 0)
 
   ;; Show more candidates
   ;; (setq vertico-count 20)
@@ -163,7 +163,7 @@
   ;; (setq consult-project-function (lambda (_) (vc-root-dir)))
   ;;;; 4. locate-dominating-file
   ;; (setq consult-project-function (lambda (_) (locate-dominating-file "." ".git")))
-)
+  )
 
 (use-package cape
   :after corfu
@@ -179,20 +179,21 @@
   (add-to-list 'completion-at-point-functions #'cape-file))
 
 (use-package all-the-icons
-    )
+  )
 (use-package all-the-icons-completion
-    :config
+  :config
   (all-the-icons-completion-mode))
 
 (use-package marginalia
-  :after vertico-sort-override-function
-    :config
+  :after vertico
+  :config
   (setq marginalia-align 'right)
   (marginalia-mode))
 
 (use-package corfu
   :defer 0.1
-    :config
+  :after kind-icon
+  :config
   (customize-set-variable 'kind-icon-default-face 'corfu-default)
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
 
@@ -209,6 +210,9 @@
   (corfu-auto-delay 0.1)
   (corfu-quit-no-match 'seperator)
   (corfu-excluded-modes '(term eshell org-mode mu4e-compose-mode)))
+
+lskdfjlkdsfjalksdf
+alskdjflkasdj
 
 (use-package pcmpl-args
   )
