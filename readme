@@ -1,1 +1,7 @@
+# An emacs cfg for 29+
+
+# When not using native-comp, or until it supports dumping
 ../vc/git/emacs/src/emacs -q --batch -l dump.el ; ../vc/git/emacs/src/emacs --dump-file=emacs.pdmp
+
+# System configuration
+--with-native-compilation --with-gif=ifavailable --with-tiff=ifavailable --with-gnutls=yes --with-json=yes --with-native-compilation --with-mailutils --with-x-toolkit=gtk3 --with-tree-sitter --with-rsvg --with-x --without-toolkit-scroll-bars --with-xinput2 --without-included-regex --without-compress-install 'CFLAGS= -O2 -march=native' --with-cairo
