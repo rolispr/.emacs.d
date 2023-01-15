@@ -38,5 +38,7 @@
 (push '(tool-bar-lines . 0) default-frame-alist)
 (push '(vertical-scroll-bars) default-frame-alist)
 (setq frame-inhibit-implied-resize t)
+(add-to-list 'default-frame-alist '(font . "Hack 11"))
 (setq package-quickstart t)
 (setq use-package-compute-statistics t)
+

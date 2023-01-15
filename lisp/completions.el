@@ -211,9 +211,6 @@
   (corfu-quit-no-match 'seperator)
   (corfu-excluded-modes '(term eshell org-mode mu4e-compose-mode)))
 
-lskdfjlkdsfjalksdf
-alskdjflkasdj
-
 (use-package pcmpl-args
   )
 (use-package kind-icon

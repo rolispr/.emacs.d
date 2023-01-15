@@ -1,17 +1,13 @@
 ;;-*- lexical-binding: t -*-
 
-(require 'doom-themes)
-(autoload #'magit-status "magit" nil t)
-(run-with-idle-timer 2 nil #'require 'which-key nil t)
-
 ;;; Theme
 ; For current frame
 ;;(set-frame-parameter (selected-frame) 'alpha '(100 100))
 ;;(add-to-list 'default-frame-alist '(alpha 85 85))
-(set-frame-parameter nil 'alpha-background 85)
-(add-to-list 'default-frame-alist '(alpha-background . 85)) ; For all new frames henceforth
-(set-frame-parameter nil 'internal-border-width 1)
-(setq cursor-type 'bar)
+;;(set-frame-parameter nil 'alpha-background 85)
+;;(add-to-list 'default-frame-alist '(alpha-background . 85)) ; For all new frames henceforth
+(set-frame-parameter nil 'internal-border-width 17)
+(setq-default cursor-type 'bar)
 (setq blink-cursor-mode nil)
 ;;(setq blink-cursor-blinks -1)
 
@@ -19,176 +15,91 @@
 (fset #'display-startup-echo-area-message #'ignore)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq inhibit-startup-message t
-      initial-scratch-message ";;hello!"
-      ;;      inhibit-startup-echo-area-message user-login-name
+      inhibit-startup-echo-area-message user-login-name
       inhibit-default-init t)
 
 ;; Disable bidi
 (setq-default bidi-display-reordering 'left-to-right
  	      bidi-paragraph-direction 'nil)
 
-;; (setq highlight-nonselected-windows nil
-;;       auto-window-vscroll nil
-;;       fast-but-imprecise-scrolling t)
+(setq highlight-nonselected-windows nil
+       auto-window-vscroll nil
+       fast-but-imprecise-scrolling t)
 
 ;;; Initial frame position
 (when window-system
   (let ((home-monitor "C32HG7x")
 	(current (cdr (assoc 'name (car (display-monitor-attributes-list))))))
-    (when (string= home-monitor current)
+    (when (or (string= home-monitor current) (string= "HDMI-1" current))
       (message "Welcome home!")
       (set-frame-position (selected-frame) 0 0) ;; only on x11
       (set-frame-size (selected-frame) 255 75))))
 
-;;(set-frame-position (selected-frame) 0 0)
-(set-frame-size (selected-frame) 200 70)
-
-(defun my/set-gnome-bg ()
-  (interactive)
-   (let ((files '("*.png" "*.jpg"))
-	 (result))
-     (dolist (elt files result)
-       (setq result (cons (mapcar #'file-truename (file-expand-wildcards (concat "~/Downloads/" elt))) result)))
-     (set-gnome-bg (completing-read "Choose one: " (flatten-list result)))))
-
-(defun set-gnome-bg (path)
-  "Set background for Gnome given a PATH string"
-  (shell-command
-   (format "gsettings set org.gnome.desktop.background picture-uri file:///%s" path)))
-
-(setq split-height-threshold nil)
-(setq split-width-threshold 0)
-
-;; disable all alerts
-(setq ring-bell-function 'ignore) 
-
-(setq tab-bar-show t)
-(setq tab-bar-close-button-show nil
-      tab-bar-new-button-show nil)
-(tab-bar-history-mode 1)
-(setq tab-bar-forward-button nil
-      tab-bar-back-button nil)
-;;(setq tab-bar-format '(tab-bar-format-global))
-;;(setq display-time-day-and-date t)
-;;(setq display-time-default-load-average nil)
-
-(global-set-key (kbd "C-x g") 'magit-status)
-
 (setq which-key-sort-order 'which-key-key-order-alpha
       which-key-idle-delay 2)
 
-(use-package edwina
-  :ensure t
+(use-package magit
+  :bind ("C-x g" . magit-status))
+
+(use-package git-gutter
+  :hook (prog-mode . git-gutter-mode)
+  :config
+  (setq git-gutter:update-interval 0.02)
+  (setq git-gutter:added-sign " ")
+  (setq git-gutter:modified-sign " ")
+  (setq git-gutter:deleted-sign " "))
+
+(use-package emacs
+  :hook (prog-mode . display-line-numbers-mode)
+
   :config
 
-  (setq display-buffer-base-action '(display-buffer-below-selected))
+  (setq split-height-threshold nil)
+  (setq split-width-threshold 0)
 
-  (edwina-setup-dwm-keys)
-  (edwina-mode 1))
-
-(use-package meow
+  (setq ring-bell-function 'ignore)
   
-  :ensure t
-  :init
-
-  (defun meow-setup ()
-    
-    (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
-    
-    (meow-motion-overwrite-define-key
-     '("j" . meow-next)
-     '("k" . meow-prev)
-     '("<escape>" . ignore))
-    
-    (meow-leader-define-key
-     ;; SPC j/k will run the original command in MOTION state.
-     '("j" . "H-j")
-     '("k" . "H-k")
-     ;; Use SPC (0-9) for digit arguments.
-     '("1" . meow-digit-argument)
-     '("2" . meow-digit-argument)
-     '("3" . meow-digit-argument)
-     '("4" . meow-digit-argument)
-     '("5" . meow-digit-argument)
-     '("6" . meow-digit-argument)
-     '("7" . meow-digit-argument)
-     '("8" . meow-digit-argument)
-     '("9" . meow-digit-argument)
-     '("0" . meow-digit-argument)
-     '("/" . meow-keypad-describe-key)
-     '("?" . meow-cheatsheet))
-
-    (meow-normal-define-key
-     '("0" . meow-expand-0)
-     '("9" . meow-expand-9)
-     '("8" . meow-expand-8)
-     '("7" . meow-expand-7)
-     '("6" . meow-expand-6)
-     '("5" . meow-expand-5)
-     '("4" . meow-expand-4)
-     '("3" . meow-expand-3)
-     '("2" . meow-expand-2)
-     '("1" . meow-expand-1)
-     '("-" . negative-argument)
-     '(";" . meow-reverse)
-     '("," . meow-inner-of-thing)
-     '("." . meow-bounds-of-thing)
-     '("[" . meow-beginning-of-thing)
-     '("]" . meow-end-of-thing)
-     '("a" . meow-append)
-     '("A" . meow-open-below)
-     '("b" . meow-back-word)
-     '("B" . meow-back-symbol)
-     '("c" . meow-change)
-     '("d" . meow-delete)
-     '("D" . meow-backward-delete)
-     '("e" . meow-next-word)
-     '("E" . meow-next-symbol)
-     '("f" . meow-find)
-     '("g" . meow-cancel-selection)
-     '("G" . meow-grab)
-     '("h" . meow-left)
-     '("H" . meow-left-expand)
-     '("i" . meow-insert)
-     '("I" . meow-open-above)
-     '("j" . meow-next)
-     '("J" . meow-next-expand)
-     '("k" . meow-prev)
-     '("K" . meow-prev-expand)
-     '("l" . meow-right)
-     '("L" . meow-right-expand)
-     '("m" . meow-join)
-     '("n" . meow-search)
-     '("o" . meow-block)
-     '("O" . meow-to-block)
-     '("p" . meow-yank)
-     '("q" . meow-quit)
-     '("Q" . meow-goto-line)
-     '("r" . meow-replace)
-     '("R" . meow-swap-grab)
-     '("s" . meow-kill)
-     '("t" . meow-till)
-     '("u" . meow-undo)
-     '("U" . meow-undo-in-selection)
-     '("v" . meow-visit)
-     '("w" . meow-mark-word)
-     '("w" . meow-mark-symbol)
-     '("x" . meow-line)
-     '("X" . meow-goto-line)
-     '("y" . meow-save)
-     '("Y" . meow-sync-grab)
-     '("z" . meow-pop-selection)
-     '("'" . repeat)
-     '("<escape>" . ignore)))
+  (setq display-time-day-and-date t)
+  (setq display-time-default-load-average nil)
+  (display-time-mode)
   
-  :config
-  (meow-setup)
-  (meow-global-mode t))
+  (add-to-list 'tab-bar-format 'tab-bar-format-align-right t)
+  (add-to-list 'tab-bar-format 'tab-bar-format-global t)
+  (setq tab-bar-show t)
+  (tab-bar-history-mode 1)
+  (setq tab-bar-close-button-show nil
+	tab-bar-new-button-show nil)
+  (setq tab-bar-forward-button nil
+	tab-bar-back-button nil)
+  (tab-bar-mode t)
+  
+  (show-paren-mode 1)
 
-(load-theme 'doom-moonlight)
-(tab-bar-mode t)
-(winner-mode 1)
-(show-paren-mode 1)
-(which-key-mode)
+  (require-theme 'modus-themes) ; `require-theme' is ONLY for the built-in Modus themes
+
+  (setq-default fringes-outside-margins t)
+  (setq scroll-conservatively 101)
+
+  ;; Add all your customizations prior to loading the themes
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs nil
+	modus-themes-mixed-fonts t
+	modus-themes-variable-pitch-ui nil
+	modus-themes-custom-auto-reload t)
+
+  (setq modus-themes-common-palette-overrides
+	`(
+	  (border-mode-line-active unspecified)
+          (border-mode-line-inactive unspecified)
+	  (fg-line-number-inactive "gray50")
+	  (fg-line-number-active fg-main)
+	  (bg-line-number-inactive  unspecified)
+	  (bg-line-number-active  unspecified)
+	  (fringe unspecified)
+	  ,@modus-themes-preset-overrides-intense))
+
+  ;; Load the theme of your choice.
+  (load-theme 'modus-vivendi-tinted)
+  :bind ("<f5>" . modus-themes-toggle))
 
 (provide 'ui)
