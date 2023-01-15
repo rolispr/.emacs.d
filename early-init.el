@@ -1,7 +1,7 @@
 ;;-*- lexical-binding: t -*-
 
 ;; Prevent compilation from popping up warnings
-(setq native-comp-async-report-warnings-errors nil)
+(setq native-comp-async-report-warnings-errors 'silent)
 
 ;; Main hook to run after core loads
 (add-hook 'emacs-startup-hook
