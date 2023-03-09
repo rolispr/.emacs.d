@@ -6,6 +6,16 @@
    (right-fringe . 10)
    (left-fringe . 10)))
 
+;; (when window-system
+;;   (let ((home-monitor "C32HG7x")
+;; 	  (current (cdr (assoc 'name (car (display-monitor-attributes-list))))))
+;;     (when (or (string= home-monitor current) (string= "HDMI-1" current))
+;; 	(message "Welcome home!")
+;; 	(set-frame-position (selected-frame) 0 0) ; doesnt work with pgtk
+;; 	(set-frame-size (selected-frame) 255 75))))
+
+(load-theme 'ef-cherie)
+
 (dolist (face '(window-divider
 		window-divider-first-pixel
 		window-divider-last-pixel
@@ -15,21 +25,11 @@
 
 (set-face-background 'fringe (face-attribute 'default :background))
 
-;; (when window-system
-;;   (let ((home-monitor "C32HG7x")
-;; 	  (current (cdr (assoc 'name (car (display-monitor-attributes-list))))))
-;;     (when (or (string= home-monitor current) (string= "HDMI-1" current))
-;; 	(message "Welcome home!")
-;; 	(set-frame-position (selected-frame) 0 0) ; doesnt work with pgtk
-;; 	(set-frame-size (selected-frame) 255 75))))
-
 (fset #'display-startup-echo-area-message #'ignore)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq inhibit-startup-message           t
       inhibit-default-init              t
       inhibit-startup-echo-area-message user-login-name)
-
-(load-theme 'ef-cherie)
 
 (use-package window
   :config
@@ -75,7 +75,7 @@
   :config
   (add-to-list 'tab-bar-format 'tab-bar-format-align-right t)
   (add-to-list 'tab-bar-format 'tab-bar-format-global t)
-  (setq tab-bar-show              t
+  (setq tab-bar-show              nil
 	tab-bar-close-button-show nil
 	tab-bar-new-button-show   nil
 	tab-bar-forward-button    nil
