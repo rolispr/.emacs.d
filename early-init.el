@@ -1,6 +1,6 @@
-;;-*- lexical-binding: t -*-
+;; -*- lexical-binding: t -*-
 
-;; Prevent compilation from popping up warnings
+;; Prevent compilation from popping up warnings *NOTE: not working as intended..
 (setq native-comp-async-report-warnings-errors 'silent)
 
 ;; Main hook to run after core loads
@@ -21,6 +21,12 @@
 	  ;; wait later to restore in case others are using `emacs-startup-hook'
 	  100)
 
+(add-hook 'window-setup-hook
+	  (lambda ()
+	    (setq-default inhibit-redisplay nil
+			  inhibit-message nil)
+	    (redisplay)))
+
 ;; Some simple performance tweaks
 ;; 
 ;;;; First let's set the gc threshold to 100 mb so we gc less during startup.
@@ -33,12 +39,14 @@
       ;; disable checking against file handler alist when using file primitives for startup
       file-name-handler-alist nil)
 
-;; We wont be needing these where we're going 🛸
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(tool-bar-lines . 0) default-frame-alist)
 (push '(vertical-scroll-bars) default-frame-alist)
 (setq frame-inhibit-implied-resize t)
 (add-to-list 'default-frame-alist '(font . "Hack 11"))
+
+(set-language-environment "UTF-8")
+(setq default-input-method nil)
+
 (setq package-quickstart t)
 (setq use-package-compute-statistics t)
-

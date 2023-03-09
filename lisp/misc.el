@@ -1,4 +1,4 @@
-;;-*- lexical-binding: t -*-
+;; -*- lexical-binding: t -*-
 
 (require 'wdired)
 (require 'dired-subtree)
@@ -31,10 +31,6 @@
 ;; Dired
 (setq dired-recursive-copies 'always)
 (setq dired-recursive-deletes 'always)
-;; (when (memq window-system '(mac ns))
-;;   (let ((gls "/usr/local/bin/gls"))
-;;     (and (file-exists-p gls)
-;;          (setq insert-directory-program gls))))
 (setq dired-listing-switches "-AFhlv --group-directories-first")
 (setq dired-dwim-target t)
 
@@ -57,9 +53,15 @@
 (setq wgrep-auto-save-buffer t)
 (setq wgrep-change-readonly-file t)
 
+
+(setq password-cache-expiry (* 60 15))
+(setq use-dialog-box nil)
+
+
 (add-hook 'dired-mode-hook #'dired-hide-details-mode)
 (add-hook 'dired-mode-hook #'hl-line-mode)
 
 (savehist-mode)
+
 
 (provide 'misc)

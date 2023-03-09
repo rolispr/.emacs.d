@@ -5,3 +5,4 @@
 
 # System configuration
 --with-native-compilation --with-gif=ifavailable --with-tiff=ifavailable --with-gnutls=yes --with-json=yes --with-native-compilation --with-mailutils --with-x-toolkit=gtk3 --with-tree-sitter --with-rsvg --with-x --without-toolkit-scroll-bars --with-xinput2 --without-included-regex --without-compress-install 'CFLAGS= -O2 -march=native' --with-cairo
+
