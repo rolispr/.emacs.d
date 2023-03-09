@@ -8,7 +8,7 @@
   "Main dir to load modules from.")
 
 (defvar vex/emacs-dir (expand-file-name user-emacs-directory)
-  "Root dir of Emacs")
+  "Root dir of Vex.")
 
 (defvar vex/cache-dir (expand-file-name "cache" vex/emacs-dir)
   "Location for packages to place their respective cache.")

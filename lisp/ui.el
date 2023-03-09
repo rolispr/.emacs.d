@@ -1,20 +1,20 @@
 ;; -*- lexical-binding: t -*-
 
-(modify-all-frames-parameters
- '((right-divider-width . 25)
-   (internal-border-width . 25)
-   (right-fringe . 10)
-   (left-fringe . 10)))
+(when window-system
+  (let* ((home-monitor "C32HG7x")
+	 (current (cdr (assoc 'name (car (display-monitor-attributes-list))))))
+    (when (or (string= home-monitor current) (string= "HDMI-1" current))
+      (message "Welcome home!")
+      (set-frame-position (selected-frame) 0 0)
+      (set-frame-size (selected-frame) 140 65))))
 
-;; (when window-system
-;;   (let ((home-monitor "C32HG7x")
-;; 	  (current (cdr (assoc 'name (car (display-monitor-attributes-list))))))
-;;     (when (or (string= home-monitor current) (string= "HDMI-1" current))
-;; 	(message "Welcome home!")
-;; 	(set-frame-position (selected-frame) 0 0) ; doesnt work with pgtk
-;; 	(set-frame-size (selected-frame) 255 75))))
-
-(load-theme 'ef-cherie)
+(when (load-theme 'ef-cherie)
+  (set-face-attribute 'mode-line nil
+		      ;;		    :height 110
+		      :box '(:line-width 3 :color "#771a4f"))
+  (set-face-attribute 'mode-line-inactive nil
+		      ;;		    :height 110
+		      :box '(:line-width 3 :color "#392a2f")))
 
 (dolist (face '(window-divider
 		window-divider-first-pixel
@@ -33,6 +33,9 @@
 
 (use-package window
   :config
+  (unless (display-graphic-p)
+    (set-face-background 'default "unspecified-bg"))
+
   (setq-default bidi-display-reordering  'left-to-right
  		bidi-paragraph-direction 'nil
 		fringes-outside-margins  t)
@@ -42,18 +45,15 @@
   ;;(setq switch-to-buffer-obey-display-actions t)
 
   (setq split-height-threshold        nil
-	split-width-threshold         0
+	split-width-threshold         200
 	highlight-nonselected-windows nil
 	auto-window-vscroll           nil
 	fast-but-imprecise-scrolling  t
 	ring-bell-function            'ignore
 	scroll-conservatively         101)
 
-  (setq pixel-scroll-precision-large-scroll-height 35)
+  (setq pixel-scroll-precision-large-scroll-height 10)
   (pixel-scroll-precision-mode))
-
-(unless (display-graphic-p)
-  (set-face-background 'default "unspecified-bg"))
 
 (use-package magit
   :bind ("C-x g" . magit-status)
@@ -90,8 +90,8 @@
 (keymap-global-set "C-x C-m" 'execute-extended-command)
 (keymap-global-set "C-z" 'zap-up-to-char)
 
-(add-hook 'prog-mode #'display-line-numbers-mode)
-(add-hook 'prog-mode #'electric-pair-mode)
-(add-hook 'prog-mode #'show-paren-mode)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(add-hook 'prog-mode-hook #'electric-pair-mode)
+(add-hook 'prog-mode-hook #'show-paren-mode)
 
 (provide 'ui)
