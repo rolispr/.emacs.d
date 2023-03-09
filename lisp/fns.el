@@ -12,3 +12,5 @@
   "Set background for Gnome given a PATH string"
   (shell-command
    (format "gsettings set org.gnome.desktop.background picture-uri file:///%s" path)))
+
+(provide 'fns.el)
