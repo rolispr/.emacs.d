@@ -48,7 +48,7 @@
 (push '(tool-bar-lines . 0) default-frame-alist)
 (push '(vertical-scroll-bars) default-frame-alist)
 (setq frame-inhibit-implied-resize t)
-(add-to-list 'default-frame-alist '(font . "Hack 11"))
+;;(add-to-list 'default-frame-alist '(font . "Hack 11"))
 
 (set-language-environment "UTF-8")
 (setq default-input-method nil)

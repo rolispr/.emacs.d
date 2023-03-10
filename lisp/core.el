@@ -34,4 +34,5 @@
 (require 'ui)
 (require 'misc)
 (require 'completions)
-(require 'fns.el)
+(require 'fns)
+(require 'multimedia)
