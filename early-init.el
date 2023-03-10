@@ -27,7 +27,7 @@
 			  inhibit-message nil)
 	    (modify-all-frames-parameters
 	     '((right-divider-width . 25)
-	       (internal-border-width . 25)
+	       (internal-border-width . 1)
 	       (right-fringe . 10)
 	       (left-fringe . 10)))
 	    (redisplay)))

@@ -175,7 +175,7 @@
   ;; and behaves as a pure `completion-at-point-function'.
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify)
   
-;;  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  ;;  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (add-to-list 'completion-at-point-functions #'cape-file))
 
 (use-package all-the-icons
@@ -202,7 +202,7 @@
   (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
   (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup)
   (add-hook 'eshell-mode-hook #'corfu-mode)
-;;  (global-corfu-mode)
+  ;;  (global-corfu-mode)
   :custom
   (corfu-auto t)
   (corfu-cycle t)
